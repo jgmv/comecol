@@ -4,6 +4,8 @@
 #' @param com a community data object.
 #' @param thr threshold of sequence similarity for OTU clustering. In percentage.
 #' @param method method of clustering, either 'cd-hit' or 'blastclust'
+#' @param file the name of the file where the data will be stored as 'RData' object.
+#' @param use_saved read data from 'file' instead of importing them from scratch.
 #' @details The function still depends of an external bash script ('otu_clustering.sh'), whcih makes portability problematic. Future changes will aim at solving this problem. 
 #' @return A list with community data.
 #' @keywords community data
@@ -11,7 +13,15 @@
 #' @examples
 #' otu_clustering()
 otu_clustering <- function(com, thr = 97, method = "cd-hit",
-  folder = "OTU_clustering", cleanup_files = F) {  
+  folder = "OTU_clustering", cleanup_files = F, file = NULL, use_saved = F) {
+
+  if (use_saved & !file.exists(file)) message("No data, reading objects...")
+  if(use_saved & file.exists(file)){    
+    com <- readRDS(file)
+    message("Reading data from ", file)
+    return(com)
+    stop()    
+  }
 
   # download necessary scripts for clustering
   download.file(url = "https://github.com/jgmv/bash_seq_analysis/archive/master.zip",
@@ -80,7 +90,9 @@ otu_clustering <- function(com, thr = 97, method = "cd-hit",
   
   # check data consistency
   result_com <- check_com(result_com)
-  
+
+  # save data
+  if(!is.null(file)) saveRDS(result_com, file = file)    
   return(result_com)
   
   # remove temporary files

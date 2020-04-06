@@ -4,7 +4,7 @@
 #' @param com a community data object.
 #' @param sel logical expression indicating elements or rows to keep.
 #' @param var if 'sel' is not provided, the name of column in 'env' to be used for selection.
-#' @param var if 'sel' is not provided, the name of the values in 'var' to keep.
+#' @param val if 'sel' is not provided, the name of the values in 'var' to keep.
 #' @return A list with community data.
 #' @keywords community data
 #' @export

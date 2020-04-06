@@ -9,7 +9,9 @@ otu_clustering(
   thr = 97,
   method = "cd-hit",
   folder = "OTU_clustering",
-  cleanup_files = F
+  cleanup_files = F,
+  file = NULL,
+  use_saved = F
 )
 }
 \arguments{
@@ -18,6 +20,10 @@ otu_clustering(
 \item{thr}{threshold of sequence similarity for OTU clustering. In percentage.}
 
 \item{method}{method of clustering, either 'cd-hit' or 'blastclust'}
+
+\item{file}{the name of the file where the data will be stored as 'RData' object.}
+
+\item{use_saved}{read data from 'file' instead of importing them from scratch.}
 }
 \value{
 A list with community data.

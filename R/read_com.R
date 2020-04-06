@@ -20,8 +20,8 @@ read_com <- function(cdm, env, tax, seq = NULL, phy = NULL, file = NULL,
 
   if (use_saved & !file.exists(file)) message("No data, reading objects...")
   if(use_saved & file.exists(file)){    
-    com <- readRDS(obj_name)
-    message(paste("Reading data from ", obj_name))    
+    com <- readRDS(file)
+    message(paste("Reading data from ", file))    
   } else {    
     # read data
     cdm <- read.table(cdm, h = T, row.names = 1, ...)

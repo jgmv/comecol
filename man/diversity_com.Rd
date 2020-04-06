@@ -17,7 +17,7 @@ diversity_com(com, file = "diversity_indices.csv", ...)
 A list with community data.
 }
 \description{
-Calculates abundance and various diversity indices per sample for a community data object. The diversity values are expressed in effective species numbers. Diversity results are also normalized by sampling depth using linear models.
+Calculates abundance and various diversity indices per sample for a community data object. The diversity values are expressed in effective species numbers.
 }
 \examples{
 diversity_com()
