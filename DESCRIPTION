@@ -15,6 +15,7 @@ Imports:
   DESeq,
   locfit,
   picante,
+  phytools,
   raster,
   sp,
   vegan,
