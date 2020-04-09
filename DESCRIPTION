@@ -12,6 +12,7 @@ RoxygenNote: 7.1.0
 Imports:
   ape,
   Biobase,
+  DESeq,
   locfit,
   picante,
   raster,
