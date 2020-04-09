@@ -23,7 +23,7 @@ tax_prop <- function(com, taxon, var = NULL,
   tab <- tab[, names(sort(colSums(tab), decreasing = T))]
   if(n < length(levels(com$tax[, taxon]))) {
     tab <- cbind(tab[, 1:n], others = rowSums(tab[, (n + 1):ncol(tab)]))
-  }  
+  }
   return(tab)
 
 }

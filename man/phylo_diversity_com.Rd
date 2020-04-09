@@ -6,6 +6,7 @@
 \usage{
 phylo_diversity_com(
   com,
+  null.model = "taxa.labels",
   runs = 100,
   file = "phylo_diversity.RData",
   use_saved = F
@@ -13,6 +14,8 @@ phylo_diversity_com(
 }
 \arguments{
 \item{com}{a community data object.}
+
+\item{null.model}{null model to use (see ?ses.mpd').}
 
 \item{runs}{number of randomizations.}
 

@@ -24,7 +24,8 @@ host_data <- function(com, tree, plant = "host_species", k = 4) {
   host_coord <- vegan::scores(tree_pcoa)[as.character(com$env[, plant]), ]
   rownames(host_coord) <- rownames(com$env)
   colnames(host_coord) <- paste0("host_PC", 1:ncol(host_coord))
-  com$host <- host_coord  
+  com$host <- host_coord
+  com$host_pcoa <- tree_pcoa 
   return(com) 
 
 }

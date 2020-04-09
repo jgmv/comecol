@@ -14,11 +14,13 @@ diversity_com <- function(com, file = "diversity_indices.csv", ...) {
   # calculate indices
   abundance <- rowSums(com$cdm)
   richness <- apply(com$cdm, 1, function(x) sum(x > 0))
-  shannon  <- exp(vegan::diversity(com$cdm, index = "shannon"))
+  shannon  <- vegan::diversity(com$cdm, index = "shannon")
+  evenness <- shannon / log(richness)
+  shannon  <- exp(shannon)
   simpson  <- vegan::diversity(com$cdm, index = "invsimpson")
   
   # combine data
-  com$diversity <- data.frame(abundance, richness, shannon, simpson)
+  com$diversity <- data.frame(abundance, richness, shannon, simpson, evenness)
       
   # save data
   write.table(com$diversity, file = file, col.names = NA, ...) 

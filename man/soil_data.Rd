@@ -4,14 +4,12 @@
 \alias{soil_data}
 \title{Add Soil Data To Community Data Object}
 \usage{
-soil_data(com, soil, eigenvectors = T, k = 3)
+soil_data(com, soil, k = 3)
 }
 \arguments{
 \item{com}{a community data object.}
 
 \item{soil}{data frame with soil charactersitics to be added. Row names must be as in 'env'.}
-
-\item{eigenvectors}{logical, whether eigenvectors should be provided instead of raw soil data.}
 
 \item{k}{the number of eigenvectors retained.}
 }
@@ -22,7 +20,7 @@ A list with community data.
 Adds soil characteristics to community data object.
 }
 \details{
-If eigenvectors = T, eigenvalues are obtained from a Principal Coordinates Analysis calculated from the soil data.
+Eigenvectors are obtained from a Principal Coordinates Analysis calculated from the soil data.
 }
 \examples{
 soil_data()

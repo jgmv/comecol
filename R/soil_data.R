@@ -3,15 +3,14 @@
 #' Adds soil characteristics to community data object.
 #' @param com a community data object.
 #' @param soil data frame with soil charactersitics to be added. Row names must be as in 'env'.
-#' @param eigenvectors logical, whether eigenvectors should be provided instead of raw soil data.
 #' @param k the number of eigenvectors retained.
-#' @details If eigenvectors = T, eigenvalues are obtained from a Principal Coordinates Analysis calculated from the soil data.
+#' @details Eigenvectors are obtained from a Principal Coordinates Analysis calculated from the soil data.
 #' @return A list with community data.
 #' @keywords community data
 #' @export
 #' @examples
 #' soil_data()
-soil_data <- function(com, soil, eigenvectors = T, k = 3) {
+soil_data <- function(com, soil, k = 3) {
 
   if(!is.data.frame(soil)) stop("'soil' must be a data frame")
   
@@ -22,19 +21,16 @@ soil_data <- function(com, soil, eigenvectors = T, k = 3) {
   }
   
   soil <- soil[com$env$site, ]
-  rownames(soil) <- rownames(com$env)
-  
-  if(eigenvectors) {
-    soil_scaled  <- scale(soil)
-    soil_dist    <- dist(soil_scaled)
-    soil_pca     <- cmdscale(soil_dist, k = k, eig = T)
-    soil_coord <- soil_pca$points
-    rownames(soil_coord) <- rownames(com$env)
-    colnames(soil_coord) <- paste0("soil_PC", 1:ncol(soil_coord))
-    com$soil <- soil_coord
-  } else {
-    com$soil <- soil
-  }
+  rownames(soil) <- rownames(com$env)  
+  com$soil <- soil
+  soil_scaled  <- scale(soil)
+  soil_dist    <- dist(soil_scaled)
+  soil_pca     <- cmdscale(soil_dist, k = k, eig = T)
+  soil_coord <- soil_pca$points
+  rownames(soil_coord) <- rownames(com$env)
+  colnames(soil_coord) <- paste0("soil_PC", 1:ncol(soil_coord))
+  com$soil_eig <- soil_coord
+  com$soil_pca <- soil_pca
   
   return(com)
   

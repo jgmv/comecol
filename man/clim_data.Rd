@@ -4,7 +4,7 @@
 \alias{clim_data}
 \title{Get Bioclimatic Data For Community Data}
 \usage{
-clim_data(com, x = "lon", y = "lat", eigenvectors = T, k = 3, keep_data = T)
+clim_data(com, x = "lon", y = "lat", k = 3, keep_data = T)
 }
 \arguments{
 \item{com}{a community data object.}
@@ -12,8 +12,6 @@ clim_data(com, x = "lon", y = "lat", eigenvectors = T, k = 3, keep_data = T)
 \item{x}{name of the column in 'env' where the longitude coordinates are stored.}
 
 \item{y}{name of the column in 'env' where the latitude coordinates are stored.}
-
-\item{eigenvectors}{logical, whether eigenvectors should be provided instead of raw bioclimatic data.}
 
 \item{k}{the number of eigenvectors retained.}
 
@@ -26,7 +24,7 @@ A list with community data.
 Obtains bioclimatic variables from the "WorldClim" dataset for the samples in a community data object, using geographical coordinates provided in the environmental table.
 }
 \details{
-If eigenvectors = T, eigenvalues are obtained from a Principal Coordinates Analysis calculated from the bioclimatic data.
+Eigenvectors are obtained from a Principal Coordinates Analysis calculated from the bioclimatic data.
 }
 \examples{
 clim_data()
