@@ -41,12 +41,12 @@ modify_taxonomy <- function(x, term = "unclassified") {
       } else {
         x[i, ncat] <- tag
       }
-    } else if(any(grep("_sp", x[i, ncat], invert = T))) {
+    } else if(x[i, ncat] == term) {
       tag <- paste0(x[i, ncat - 1], "_sp")
       if(!(tag %in% levels(x[, ncat]))) {
         levels(x[, ncat]) <- c(levels(x[, ncat]), tag)
-        x[i, ncat] <- tag
       }
+      x[i, ncat] <- tag
     }
   }
   x <- droplevels(x)
