@@ -22,7 +22,8 @@ soil_data <- function(com, soil, k = 3) {
   
   soil <- as.matrix(soil)
   soil <- soil[as.character(com$env$site), ]
-  rownames(soil) <- rownames(com$env)  
+  rownames(soil) <- rownames(com$env)
+  soil <- as.data.frame(soil) 
   com$soil <- soil
   soil_scaled  <- scale(soil)
   soil_dist    <- dist(soil_scaled)
