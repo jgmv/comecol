@@ -17,7 +17,7 @@ phylomatic_like(
 
 \item{tree}{optional, a master tree to be subsetted.}
 
-\item{dataset, }{if no 'tree' is provided, select a built-in dataset: 'fungi' (default) or 'plants'}
+\item{dataset}{if no 'tree' is provided, select a built-in dataset: 'fungi' (default) or 'plants'}
 
 \item{keep_closest}{if a species is not found in the master tree, attempts to select a tip from a species in the same genus.}
 

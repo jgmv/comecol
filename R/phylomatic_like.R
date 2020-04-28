@@ -3,7 +3,7 @@
 #' Subsets a master phylogenetic tree using a provided list of taxon names, similarly to the 'phylomatic' function at https://phylodiversity.net/.
 #' @param tax a vector with taxon names to pick from the tree.
 #' @param tree optional, a master tree to be subsetted.
-#' @param dataset, if no 'tree' is provided, select a built-in dataset: 'fungi' (default) or 'plants'
+#' @param dataset if no 'tree' is provided, select a built-in dataset: 'fungi' (default) or 'plants'
 #' @param keep_closest if a species is not found in the master tree, attempts to select a tip from a species in the same genus.
 #' @param sep when keep_closest = T, the separator in the taxon names.
 #' @details Differently to phylomatic, the function allows repeated names as input, which will results in repeated tips with zero-length branches.

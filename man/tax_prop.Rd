@@ -9,7 +9,9 @@ tax_prop(
   taxon,
   var = NULL,
   n = length(levels(com$tax[, taxon])),
-  fun = sum
+  fun = sum,
+  omit_unclassified = T,
+  term = "unclassified"
 )
 }
 \arguments{
@@ -20,6 +22,8 @@ tax_prop(
 \item{var}{a factor to pool samples. Must be a column name in table 'env'. Optional.}
 
 \item{fun}{function to use for pooling taxonomic data. Default is sum.}
+
+\item{omit_unclassified}{omit unclassified taxa from the column sorting. Unclassified taxa are placed at the end.}
 }
 \value{
 A data frame with proportions of taxa across samples.

@@ -20,7 +20,8 @@ soil_data <- function(com, soil, k = 3) {
     break
   }
   
-  soil <- soil[com$env$site, ]
+  soil <- as.matrix(soil)
+  soil <- soil[as.character(com$env$site), ]
   rownames(soil) <- rownames(com$env)  
   com$soil <- soil
   soil_scaled  <- scale(soil)
