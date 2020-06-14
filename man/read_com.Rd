@@ -12,6 +12,7 @@ read_com(
   phy = NULL,
   file = NULL,
   use_saved = F,
+  tree_from_tax = T,
   ...
 )
 }
@@ -24,11 +25,13 @@ read_com(
 
 \item{seq}{the name of the file where sequences for each species in fasta format. Sequence headers must be the species names as in columns of 'cdm'.}
 
-\item{phy}{the name of the file with a phylogenetic tree in Newick format including the species in 'cdm'. Tip labels must be the species names as in columns of 'cdm'. If no tree is provided, a taxonomic tree is automatically generated using the information in 'tax'.}
+\item{phy}{the name of the file with a phylogenetic tree in Newick format including the species in 'cdm'. Tip labels must be the species names as in columns of 'cdm'. If no tree is provided, a taxonomic tree can be automatically generated using the information in 'tax', using option 'tree_from_tax = T'.}
 
 \item{file}{the name of the file where the data will be stored as 'RData' object.}
 
 \item{use_saved}{read data from 'file' instead of importing them from scratch.}
+
+\item{tree_from_tax}{calculate hierarchical taxonomic tree from object tax.}
 
 \item{...}{further arguments to be passed to 'read.table'.}
 }
