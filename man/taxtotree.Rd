@@ -4,25 +4,16 @@
 \alias{taxtotree}
 \title{Taxonomy Table To Tree}
 \usage{
-taxtotree(com, taxfile = "tax.txt", treefile = "tax.tre")
+taxtotree(tax)
 }
 \arguments{
-\item{com}{a community data object.}
-
-\item{taxfile}{the name of the file to be generated containing the taxonomy table.}
-
-\item{treefile}{the name of the file to be generated containing the taxonomy tree in Newick format.}
+\item{tax}{a taxonomy data frame.}
 }
 \value{
 A phylogenetic tree in 'ape' format.
 }
 \description{
 Generates a tree from the taxonomy table in a 'com' object.
-}
-\details{
-The tree calculated from the taxonomic data provided is performed using the perl script 'taxonomy_to_tree.pl' available at 'https://github.com/mr-y/my_bioinfPerls'.
-
-Currently, the function relies on bash scripts called with 'system', hence it is not very portable. Further versions may include a better R integration.
 }
 \examples{
 taxtotree()

@@ -12,7 +12,6 @@ read_com(
   phy = NULL,
   file = NULL,
   use_saved = F,
-  tree_from_tax = T,
   ...
 )
 }
@@ -30,8 +29,6 @@ read_com(
 \item{file}{the name of the file where the data will be stored as 'RData' object.}
 
 \item{use_saved}{read data from 'file' instead of importing them from scratch.}
-
-\item{tree_from_tax}{calculate hierarchical taxonomic tree from object tax.}
 
 \item{...}{further arguments to be passed to 'read.table'.}
 }

@@ -24,15 +24,16 @@ check_com <- function(com, remove_zeros = T) {
   }
 
   # check missing taxa
-  if(is.null(com$phy)) {
+  if(is.null(com$seq)) {
     cdm_miss_taxa <- colnames(com$cdm)[!(colnames(com$cdm) %in%
-      rownames(com$tax)) | !(colnames(com$cdm) %in% names(com$seq))]    
+      rownames(com$tax)) | !(colnames(com$cdm) %in% com$phy$tip.label)]    
     tax_miss_taxa <- rownames(com$tax)[!(rownames(com$tax) %in%
-      colnames(com$cdm)) | !(rownames(com$tax) %in% names(com$seq))]    
-    seq_miss_taxa <- names(com$seq)[!(names(com$seq) %in%
-      colnames(com$cdm)) | !(names(com$seq) %in% rownames(com$tax))]
+      colnames(com$cdm)) | !(rownames(com$tax) %in% com$phy$tip.label)]    
+    phy_miss_taxa <- com$phy$tip.label[!(com$phy$tip.label %in%
+      colnames(com$cdm)) | !(com$phy$tip.label %in% rownames(com$tax))]
+
     # combine missing taxa
-    missing_taxa <- c(cdm_miss_taxa, tax_miss_taxa, seq_miss_taxa)
+    missing_taxa <- c(cdm_miss_taxa, tax_miss_taxa, phy_miss_taxa)
     if(length(missing_taxa) > 0) missing_taxa <- unique(missing_taxa)    
   } else {
     cdm_miss_taxa <- colnames(com$cdm)[!(colnames(com$cdm) %in%
