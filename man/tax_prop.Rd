@@ -24,6 +24,8 @@ tax_prop(
 \item{fun}{function to use for pooling taxonomic data. Default is sum.}
 
 \item{omit_unclassified}{omit unclassified taxa from the column sorting. Unclassified taxa are placed at the end.}
+
+\item{term}{if omit_unclassified = T, the term defining unclassified taxa.}
 }
 \value{
 A data frame with proportions of taxa across samples.

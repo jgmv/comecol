@@ -6,7 +6,7 @@
 #' @param var a factor to pool samples. Must be a column name in table 'env'. Optional.
 #' @param fun function to use for pooling taxonomic data. Default is sum.
 #' @param omit_unclassified omit unclassified taxa from the column sorting. Unclassified taxa are placed at the end.
-#' @term if omit_unclassified = T, the term defining unclassified taxa.
+#' @param term if omit_unclassified = T, the term defining unclassified taxa.
 #' @return A data frame with proportions of taxa across samples.
 #' @keywords community data
 #' @export
@@ -28,8 +28,11 @@ tax_prop <- function(com, taxon, var = NULL,
     tab1 <- tab[, !(colnames(tab) %in% unclassified)]
     tab1 <- tab1[, names(sort(colSums(tab1), decreasing = T))]
     tab2 <- tab[, colnames(tab) %in% unclassified]
-    tab2 <- tab2[, names(sort(colSums(tab2), decreasing = T))]
+    if(!is.vector(tab2)) {
+      tab2 <- tab2[, names(sort(colSums(tab2), decreasing = T))]
+    }
     tab <- cbind(tab1, tab2)
+    colnames(tab)[ncol(tab)] <- "unclassified"
   } else {
     tab <- tab[, names(sort(colSums(tab), decreasing = T))]
   }
