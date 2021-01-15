@@ -11,9 +11,11 @@
 #' taxtotree()
 taxtotree <- function(tax, a = 1, b = 7) {
   
+  message("Building phylogenetic tree...")
   tax <- tax[, a:b]
   string <- tidyr::unite(cbind(tax, rownames(tax)), pathString, sep = "/")
   phy <- ape::as.phylo(data.tree::as.Node(string))
+  message("Done!")
   return(phy)
 
 }
