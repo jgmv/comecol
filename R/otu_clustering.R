@@ -86,7 +86,9 @@ otu_clustering <- function(com, thr = 97, method = "cd-hit",
     "family", "genus", "species")], rownames(result_com$tax)),
     file = paste0(folder, "/phylo_input.txt"), quote = F,
     sep = "\t", col.names = F, row.names = F)
-  result_com$phy <- taxtotree(result_com)
+  #result_com$phy <- taxtotree(result_com)
+  message("No tree loaded. Generating random tree...")
+  result_com$phy <- ape::rtree(ncol(result_com$cdm), rooted = F, tip.label = colnames(result_com$cdm))
   
   # check data consistency
   result_com <- check_com(result_com)
