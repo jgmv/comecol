@@ -34,8 +34,13 @@ read_com <- function(cdm, env, tax, seq = NULL, phy = NULL, file = NULL,
     
     # combine data
     com <- list(cdm = cdm, env = env, tax = tax, seq = seq, phy = phy) 
-    if(is.null(phy)) com$phy <- taxtotree(com$tax) 
-  
+    if(is.null(phy)) {
+      #message("No tree loaded. Generating from tax file...")    
+      #com$phy <- taxtotree(com$tax)
+      message("No tree loaded. Generating random tree...") 
+      com$phy <- ape::rtree(ncol(cdm), rooted = F, tip.label = colnames(cdm))
+    }
+    
     # check data consistency
     com <- check_com(com)
     
