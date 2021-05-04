@@ -23,10 +23,10 @@ phylo_diversity_com <- function(com, null.model = "taxa.labels", runs = 100,
     pd <- picante::ses.pd(com$cdm, com$phy, include.root = F, runs = runs)
     mpd <- picante::ses.mpd(com$cdm, cophenetic(com$phy),
       null.model = null.model, abundance.weighted = T, runs = runs)
-    mpd$nri <- 1 - mpd$mpd.obs.z
+    mpd$nri <- -mpd$mpd.obs.z
     mntd <- picante::ses.mntd(com$cdm, cophenetic(com$phy),
       null.model = null.model, abundance.weighted = T, runs = runs)
-    mntd$nti <- 1 - mntd$mntd.obs.z
+    mntd$nti <- -mntd$mntd.obs.z
     phylo_diversity <- list(pd = pd, mpd = mpd, mntd = mntd)
   
     # save data
