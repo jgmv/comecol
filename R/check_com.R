@@ -90,6 +90,8 @@ check_com <- function(com, remove_zeros = T) {
   for(i in 1:length(names(com))) {
     if(all(rownames(com$env) %in% rownames(com[[i]]))) com[[i]] <-
       com[[i]][rownames(com$env), ]
+    if(all(rownames(com$env) %in% names(com[[i]]))) com[[i]] <-
+      com[[i]][rownames(com$env)]
   }  
   return(com) 
  
