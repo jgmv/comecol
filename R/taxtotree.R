@@ -9,13 +9,17 @@
 #' @export
 #' @examples
 #' taxtotree()
-taxtotree <- function(tax, a = 1, b = 7) {
+taxtotree <- function(tax, a = 1, b = 7, include_rownames = T) {
   
   message("Building phylogenetic tree...")
   tax <- tax[, a:b]
   #string <- tidyr::unite(cbind(tax, rownames(tax)), pathString, sep = "/")
-  string <- apply(cbind(all_pd[, 4:10], rownames(all_pd)), 1,
-    function(x) paste(x, collapse = "/"))
+  if(include_rownames) {
+    string <- apply(cbind(tax, rownames(tax)), 1,
+      function(x) paste(x, collapse = "/"))
+  } else {
+    string <- apply(tax, 1, function(x) paste(x, collapse = "/"))
+  }
   string <- as.data.frame(string)
   colnames(string) <- "pathString"
   phy <- ape::as.phylo(data.tree::as.Node(string))
