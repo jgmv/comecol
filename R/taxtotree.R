@@ -4,6 +4,7 @@
 #' @param tax a taxonomy data frame.
 #' @param a first column to be included.
 #' @param b last column to be included.
+#' @param include_rownames include row names as tip labels
 #' @return A phylogenetic tree in 'ape' format.
 #' @keywords community data
 #' @export
