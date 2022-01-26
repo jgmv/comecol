@@ -25,6 +25,8 @@ phylomatic_like <- function(tax, tree = NULL, dataset = "fungi",
       tree_file <- "Tedersoo_et_al_2018.tre"
     } else if (dataset == "plants") {
       tree_file <- "Zanne_et_al_2014.tre"
+    } else if (dataset == "daphne") {
+      tree_file <- "DaPhnE_01.tre"
     }
     message(paste("No tree provided. Using", tree_file))
     tree <- ape::read.tree(system.file("extdata", tree_file,
