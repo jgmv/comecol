@@ -10,7 +10,8 @@
 #' @export
 assign_FT_guilds <- function(x, secondary = F, print_missing = F,
   glomeromycota_to_AMF = F) {
-  dataset <- "fungaltraits.csv"
+  dataset <- system.file("extdata", "fungaltraits.csv",
+    package = "comecol")
   ft <- read.csv(dataset, h = T, sep = ",")
   # repeated genera
   #ft[ft$genus %in% ft$genus[duplicated(ft$genus)], ]
