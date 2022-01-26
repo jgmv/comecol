@@ -8,7 +8,7 @@
 #' @return A vector with the guild assignments.
 #' @keywords fungal guild
 #' @export
-assign_FT_guilds <- function(x, secondary = F, print_missing = T,
+assign_FT_guilds <- function(x, secondary = F, print_missing = F,
   glomeromycota_to_AMF = F) {
   dataset <- "fungaltraits.csv"
   ft <- read.csv(dataset, h = T, sep = ",")
