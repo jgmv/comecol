@@ -4,6 +4,7 @@
 #' @param com a community data object.
 #' @param taxon name of the taxonomic level to calculate proportions. Must be a column name in table 'tax'.
 #' @param var a factor to pool samples. Must be a column name in table 'env'. Optional.
+#' @param sel selection of specific taxa to output. Overrides 'n'.
 #' @param fun function to use for pooling taxonomic data. Default is sum.
 #' @param omit_unclassified omit unclassified taxa from the column sorting. Unclassified taxa are placed at the end.
 #' @param term if omit_unclassified = T, the term defining unclassified taxa.
@@ -12,7 +13,7 @@
 #' @export
 #' @examples
 #' tax_prop()
-tax_prop <- function(com, taxon, var = NULL,
+tax_prop <- function(com, taxon, var = NULL, sel = NULL,
   n = length(levels(com$tax[, taxon])), fun = sum, omit_unclassified = T,
   term = "unclassified") {  
   if(!(taxon %in% colnames(com$tax))) {    
@@ -36,11 +37,14 @@ tax_prop <- function(com, taxon, var = NULL,
   } else {
     tab <- tab[, names(sort(colSums(tab), decreasing = T))]
   }
-  if(n < length(levels(com$tax[, taxon]))) {
+  if(!is.null(sel)) {
+    if(!is.vector(sel)) stop("'sel' must be a vector.")
+    if(any(!(sel %in% colnames(tab)))) stop("At least one taxon not found.")
+    tab <- cbind(tab[, sel],
+      others = rowSums(tab[, !(colnames(tab) %in% sel)]))       
+  } else if(n < length(levels(com$tax[, taxon]))) {
     tab <- cbind(tab[, 1:n], others = rowSums(tab[, (n + 1):ncol(tab)]))
   }
   return(tab)
 
 }
-
-
