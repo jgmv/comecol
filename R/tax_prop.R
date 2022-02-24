@@ -50,8 +50,14 @@ tax_prop <- function(com, taxon, var = NULL, sel = NULL,
       tab <- cbind(tab[, sel],
         others = tab[, !(colnames(tab) %in% sel)]) 
     } else {
-      tab <- cbind(tab[, sel],
-        others = rowSums(tab[, !(colnames(tab) %in% sel)])) 
+      if(length(sel) == 1) {
+        tab <- cbind(tab[, sel],
+          others = rowSums(tab[, !(colnames(tab) %in% sel)]))
+        colnames(tab)[1] <- sel
+      } else {
+        tab <- cbind(tab[, sel],
+          others = rowSums(tab[, !(colnames(tab) %in% sel)]))
+      }
     }      
   } else if(n < length(levels(com$tax[, taxon]))) {
     tab <- cbind(tab[, 1:n], others = rowSums(tab[, (n + 1):ncol(tab)]))
