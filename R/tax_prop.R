@@ -39,9 +39,20 @@ tax_prop <- function(com, taxon, var = NULL, sel = NULL,
   }
   if(!is.null(sel)) {
     if(!is.vector(sel)) stop("'sel' must be a vector.")
-    if(any(!(sel %in% colnames(tab)))) stop("At least one taxon not found.")
-    tab <- cbind(tab[, sel],
-      others = rowSums(tab[, !(colnames(tab) %in% sel)]))       
+    if(any(!(sel %in% colnames(tab)))) {
+      missing <- sel[!(sel %in% colnames(tab))]
+      message(sprintf("Taxa missing in dataset: %s",
+        paste(missing, collapse = ", ")))
+      tab <- cbind(tab, matrix(0, nrow = nrow(tab), ncol = length(missing),
+        dimnames = list(rownames(tab), missing)))
+    }
+    if(sum(!(colnames(tab) %in% sel)) == 1) {
+      tab <- cbind(tab[, sel],
+        others = tab[, !(colnames(tab) %in% sel)]) 
+    } else {
+      tab <- cbind(tab[, sel],
+        others = rowSums(tab[, !(colnames(tab) %in% sel)])) 
+    }      
   } else if(n < length(levels(com$tax[, taxon]))) {
     tab <- cbind(tab[, 1:n], others = rowSums(tab[, (n + 1):ncol(tab)]))
   }
