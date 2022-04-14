@@ -13,7 +13,7 @@ Imports:
   ape,
   Biobase,
   data.tree,
-  DESeq,
+  #DESeq,
   locfit,
   picante,
   phytools,
