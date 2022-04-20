@@ -39,6 +39,6 @@ assign_FT_guilds <- function(x, secondary = F, print_missing = F,
         "arbuscular_mycorrhizal"
     }
   }
-  result <- droplevels(result)
+  #result <- droplevels(result)
   return(result)
 }
